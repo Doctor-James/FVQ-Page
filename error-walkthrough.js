@@ -88,7 +88,7 @@
         <text class="ew-col-label" x="45" y="390">ALL GROUPS COMPUTED IN SEQUENCE</text>
         ${groups}
         <g data-reveal="2">
-          <path class="ew-id-route" d="M150 511h490v-39h58" pathLength="1" marker-end="url(#ew-arrow)"/>
+          <path class="ew-id-route" d="M150 511h510v-39h38" pathLength="1" marker-end="url(#ew-arrow)"/>
           <rect class="ew-embedding" x="700" y="443" width="190" height="58" rx="8"/>
           <text x="795" y="468" text-anchor="middle">New embeddings</text>
           <text class="ew-muted" x="795" y="487" text-anchor="middle">learned from scratch</text>
@@ -97,7 +97,7 @@
           <text class="ew-green ew-method" x="1001" y="478" text-anchor="middle">VLM</text>
           <text class="ew-green" x="885" y="420" text-anchor="middle">Keep IDs {1, 3, 5, 7}</text>
           <text class="ew-muted" x="885" y="524" text-anchor="middle">Discrete IDs only—not reconstructed features</text>
-          ${[1,3,5,7].map((i,j)=>`<circle class="ew-packet" r="3.5"><animateMotion dur="2.2s" begin="-${j*.4}s" repeatCount="indefinite" path="M${72+i*78} 477V511H640V472H1050"/></circle>`).join('')}
+          ${[1,3,5,7].map((i,j)=>`<circle class="ew-packet" r="3.5"><animateMotion dur="2.2s" begin="-${j*.4}s" repeatCount="indefinite" path="M${72+i*78} 477V511H660V472H1050"/></circle>`).join('')}
         </g>
       </g>
     </svg></div>

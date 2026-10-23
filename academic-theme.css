@@ -1,0 +1,56 @@
+/* Academic theme; the centered hero is specific to V2. */
+.hero{text-align:center}
+.hero h1{margin:0 auto;max-width:36ch}
+.hero .authors,.hero .affil,.hero .cta{justify-content:center}
+.hero::before{background:none}
+.brand{font-weight:600;letter-spacing:0}
+h1{font-family:var(--f-display);line-height:1.2;letter-spacing:-.01em}
+h1 .tok{background:none;color:var(--fvq);-webkit-text-fill-color:var(--fvq)}
+h2,#error h2{font-weight:600;line-height:1.2;letter-spacing:-.005em}
+h3{font-family:var(--f-body);font-weight:600;letter-spacing:0}
+.eyebrow,.kicker,.finding b{font-family:var(--f-body);letter-spacing:.06em}
+.eyebrow span::before,.eyebrow span+span::before{box-shadow:none}
+.authors{color:#2b5aa8}
+.authors sup{color:var(--dim)}
+.cta .resource-btn{background:#2f333a;border-color:#2f333a;color:#fff}
+.cta .resource-btn.outline{background:var(--panel);border-color:var(--line2);color:var(--fg)}
+.cta .resource-btn:disabled:hover{border-color:#2f333a}
+.btn,.chip,.seg button,.method-replay{font-family:var(--f-body)}
+.btn.primary,.chip[aria-pressed="true"],.seg button[aria-pressed="true"]{color:#fff}
+.btn.primary:hover{background:#a84b0b}
+.finding{background:var(--bg2);border-color:var(--line2);border-left:3px solid var(--fvq)}
+.error-story,#error-story.ew{background:var(--panel);border-color:var(--line2)}
+.compare-method h3{color:var(--rvq)}
+.compare-metric small{border-color:color-mix(in srgb,var(--fvq) 25%,transparent)}
+svg text{font-family:var(--f-body)}
+.loupe{box-shadow:0 12px 32px rgba(16,24,40,.18)}
+.case-tabs button[aria-selected="true"],.case-gallery-tabs button[aria-selected=true]{border-color:color-mix(in srgb,var(--fvq) 45%,transparent)}
+.case-reader,.case-evidence{background:var(--bg2)}
+.case-boxes rect{fill:rgba(193,88,15,.05);stroke:var(--fvq)}
+.bib{background:var(--bg2)}
+.bib pre{color:var(--fg)}
+
+/* Light-theme equivalents of the comparison diagram's fixed dark colors. */
+.ew-legend i{background:var(--rvq)}
+.ew-legend i:nth-of-type(2){background:var(--good)}
+.ew svg .ew-muted,.ew svg .ew-col-label{fill:var(--dim)}
+.ew svg .ew-blue{fill:var(--rvq)}
+.ew svg .ew-green{fill:var(--good)}
+.ew svg .ew-amber{fill:var(--fvq)}
+.ew-encoder{fill:#eef3fa;stroke:#8198bc}
+.ew-vq-box{fill:#edf2fc;stroke:var(--rvq)}
+.ew-odd-box{fill:#eaf5ef;stroke:var(--good)}
+.ew-detail-bg{fill:#f6faf8;stroke:#cbded3}
+.ew-embedding{fill:#e7f2ec;stroke:#70a28b}
+.ew-wire,.ew-drop,.ew-id-route,.ew-score-link{stroke:#78889c}
+.ew-detail-link{stroke:#70a28b}
+.ew-codebook rect{fill:#f0f3f7;stroke:#a3afbd}
+.ew-codebook text{fill:var(--dim)}
+.ew[data-stage="2"] .ew-keep rect,.ew[data-stage="3"] .ew-keep rect,.ew-id rect{fill:#dceee3;stroke:var(--good)}
+.ew[data-stage="2"] .ew-keep text,.ew[data-stage="3"] .ew-keep text,.ew-id text{fill:#176d45}
+.ew-id-route{stroke:var(--good)}
+.ew-packet{fill:var(--good)}
+.ew-compare-mse{color:var(--fvq)}
+.ew-compare-score{color:var(--good)}
+.ew-caption strong{color:var(--good)}
+.ew-steps button i{background:var(--good)}

@@ -1,0 +1,82 @@
+#error .error-layout{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,3fr);gap:clamp(24px,3vw,48px);align-items:center}
+#error{padding-top:20px;padding-bottom:24px}
+#error .error-intro{display:block;padding:0;margin:0}
+#error .error-intro h2{max-width:none}
+@media(min-width:1051px){#error .error-intro h2{line-height:1.15}}
+@media(min-width:1051px){
+  #error .error-intro{align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+  #error .error-intro .ew-caption{display:block;margin-top:28px;padding:20px 0 0;min-height:190px}
+  #error .error-intro .ew-caption::before{content:attr(data-step);display:block;font:11px var(--f-mono);letter-spacing:.12em;color:var(--faint);margin-bottom:12px}
+  #error .error-intro .ew-caption strong{display:block;min-width:0;margin-bottom:10px;font-size:17px}
+  #error .error-intro .ew-caption span{display:block;font-size:14px;line-height:1.65}
+}
+#error .error-intro .prose{margin-top:12px}
+#error .compare-conclusion{display:none}
+#error-story.ew{width:100%;min-width:0;max-width:1080px;margin-inline:auto;padding:14px 20px;background:linear-gradient(135deg,#121a26,#0d121b)}
+.ew-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px;align-items:center}
+.ew-kicker{font:11px var(--f-mono);letter-spacing:.12em;color:var(--fvq)}
+.ew-legend{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--dim)}
+.ew-legend i{width:6px;height:6px;border-radius:50%;background:#8ba8ed}
+.ew-legend i:nth-of-type(2){background:#8fd1b2;margin-left:12px}
+.ew-canvas{overflow-x:auto}
+.ew-canvas svg{display:block;width:100%;min-width:750px;height:auto;max-height:min(480px,calc(100svh - 330px))}
+.ew svg text{fill:var(--fg);font:15px var(--f-body)}
+.ew svg .ew-muted{fill:#92a1b7;font-size:12px}
+.ew svg .ew-col-label{fill:#92a1b7;font:10px var(--f-mono);letter-spacing:.06em}
+.ew svg .ew-method{font-size:24px;font-weight:600}
+.ew svg .ew-detail-title{font-size:20px;font-weight:600}
+.ew svg .ew-value{font:26px var(--f-mono)}
+.ew svg .ew-score{font:36px var(--f-mono)}
+.ew svg .ew-blue{fill:#a4bbff}
+.ew svg .ew-green{fill:#85dcb5}
+.ew svg .ew-amber{fill:#ffbb5a}
+.ew-encoder{fill:#1c2a3e;stroke:#6782aa;stroke-width:1.5}
+.ew-vq-box{fill:#1b2d4c;stroke:#799ce9;stroke-width:1.5}
+.ew-odd-box{fill:#16352f;stroke:#73bba2;stroke-width:1.5}
+.ew-detail-bg{fill:#101d23;stroke:#334a4a;stroke-width:1}
+.ew-embedding{fill:#1c3733;stroke:#608e80}
+.ew-wire,.ew-drop,.ew-id-route,.ew-score-link{fill:none;stroke:#8293ab;stroke-width:1.6}
+.ew-detail-link{fill:none;stroke:#567e72;stroke-dasharray:4 4}
+.ew [data-reveal]{opacity:.14;transition:opacity .65s ease}
+.ew [data-reveal].ew-shown{opacity:1}
+.ew .ew-wire{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .8s ease,opacity .65s}
+.ew .ew-wire.ew-shown{stroke-dashoffset:0}
+.ew-codebook rect{fill:#1c2a35;stroke:#526173;transition:fill .6s,stroke .6s}
+.ew-codebook text{fill:#93a2b6}
+.ew[data-stage="1"] .ew-codebook{animation:ew-chain-pass .65s calc(var(--order)*.16s) both}
+.ew[data-stage="2"] .ew-keep rect,.ew[data-stage="3"] .ew-keep rect{fill:#254b3e;stroke:#85dcb5;stroke-width:1.7}
+.ew[data-stage="2"] .ew-keep text,.ew[data-stage="3"] .ew-keep text{fill:#a5ebcb}
+.ew-id{transition-delay:calc(var(--order)*.13s)!important}
+.ew-id rect{fill:#254b3e;stroke:#85dcb5}
+.ew-id text{fill:#b3efd4}
+.ew-id-route{stroke:#85bca8;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s .35s}
+.ew-shown>.ew-id-route{stroke-dashoffset:0}
+.ew-packet{fill:#bdffde;opacity:0;transition:opacity .4s}
+.ew[data-stage="2"] .ew-packet{opacity:1}
+.ew-compare-line{fill:none;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1}
+.ew-compare-mse{color:#ffbb5a;--compare-delay:.35s}
+.ew-compare-score{color:#85dcb5;--compare-delay:1s}
+.ew-compare-line{stroke:currentColor}
+.ew-compare-tip{fill:currentColor;opacity:0}
+.ew-compare-delta{opacity:0}
+.ew[data-stage="3"] .ew-compare-line{animation:ew-compare-draw .8s var(--compare-delay) ease both}
+.ew[data-stage="3"] .ew-compare-tip{animation:ew-compare-appear .25s calc(var(--compare-delay) + .65s) both}
+.ew[data-stage="3"] .ew-compare-delta{animation:ew-compare-appear .5s calc(var(--compare-delay) + .8s) both}
+@keyframes ew-compare-draw{to{stroke-dashoffset:0}}
+@keyframes ew-compare-appear{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.ew-caption{display:flex;gap:20px;align-items:baseline;border-top:1px solid var(--line);padding:10px 0;min-height:64px}
+.ew-caption strong{font:600 15px var(--f-body);min-width:155px;color:#a5ebcb}
+.ew-caption span{font-size:14px;line-height:1.6;color:var(--dim);max-width:75em}
+.ew-controls{display:flex;gap:16px;align-items:center}
+.ew-steps{display:flex;gap:12px;flex:1}
+.ew-steps button{flex:1;padding:0;border:0;background:none;color:var(--dim);font:500 12px var(--f-body);text-align:left;cursor:pointer}
+.ew-steps button>span{height:3px;background:var(--line2);display:block;margin-bottom:8px;overflow:hidden}
+.ew-steps button i{display:block;background:#85dcb5;height:100%;width:var(--progress,0%)}
+.ew-steps button[aria-pressed=true]{color:var(--fg)}
+.ew-note{font-size:11px;line-height:1.5;color:var(--faint);margin:10px 0 0}
+@keyframes ew-chain-pass{0%{opacity:.3}55%{opacity:1;filter:brightness(1.8)}100%{opacity:1;filter:none}}
+@media(max-width:1050px){#error .error-layout{display:block}#error .error-intro{margin-bottom:16px}.ew-canvas svg{max-height:min(480px,calc(100svh - 400px))}}
+@media(max-width:800px){.ew-legend{display:none}.ew-caption{display:block;min-height:112px}.ew-caption strong{display:block;margin-bottom:5px}.ew-controls{gap:10px}.ew-steps{gap:8px}.ew-steps button{font-size:11px}}
+@media(max-width:560px){#error-story.ew{padding:16px 12px}.ew-canvas svg{min-width:750px}.ew-caption span{font-size:13px}.ew-controls{flex-wrap:wrap}.ew-steps{order:3;flex-basis:100%}.ew-replay{margin-left:auto}}
+@media(max-width:800px){.ew-canvas svg{max-height:none}}
+@media(prefers-reduced-motion:reduce){.ew *{animation:none!important;transition:none!important}.ew-packet{display:none}.ew[data-stage="3"] .ew-compare-line{stroke-dashoffset:0}.ew[data-stage="3"] .ew-compare-tip,.ew[data-stage="3"] .ew-compare-delta{opacity:1}}

@@ -1,9 +1,10 @@
 /* Finding 1: explain the retained RVQ indices before comparing results. */
 (() => {
   const host=document.querySelector('#error-story');
-  const input=host.querySelector('.compare-input img').src;
-  const vq=host.querySelector('.compare-method img').src;
-  const odd=host.querySelector('.compare-odd img').src;
+  const assets=host.querySelector('.error-assets').content;
+  const input=assets.querySelector('[data-source="input"]').src;
+  const vq=assets.querySelector('[data-source="vq"]').src;
+  const odd=assets.querySelector('[data-source="odd"]').src;
   const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
   const stages=[
     ['Same input','A frozen representation encoder provides the same input features. The quantizers are trained separately; the downstream VLM setup is identical.'],

@@ -33,7 +33,7 @@
   const images=new Map();
   function loadImage(i){
     if(!images.has(i)){
-      const image=new Image();image.decoding='async';image.src=cases[i].image;
+      const image=new Image();image.decoding='async';image.src=cases[i].preview||cases[i].image;
       const loaded=image.decode().then(()=>image).catch(error=>{images.delete(i);throw error;});
       images.set(i,loaded);
     }
@@ -116,7 +116,7 @@
     $('.case-answer-result small').textContent=d.resultLabel;$('.case-answer-result strong').textContent=d.result;
     $('.case-evidence-caption b').textContent=r.label;$('.case-evidence-caption small').textContent=r.detail;
     svg.replaceChildren();(r.boxes||[r.box]).forEach((box,k)=>{const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');['x','y','width','height'].forEach((a,j)=>rect.setAttribute(a,box[j]*1000));rect.setAttribute('pathLength','1');rect.style.transitionDelay=k*.2+'s';svg.append(rect);});
-    next.alt=d.title+' — original source image';img.replaceWith(next);img=next;
+    next.alt=d.title+' — source image';img.replaceWith(next);img=next;
     show(reduced?2:0);
     // Commit the new geometry before restoring transitions, avoiding the old transform.
     scene.getBoundingClientRect();
@@ -136,8 +136,11 @@
   new ResizeObserver(position).observe(stage);
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&!seen){seen=true;play(true);}else if(!visible)stop();},{threshold:.2}).observe(stage);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
-  select(0);
-  // Decode the other large document before a click; retain decoded images for revisits.
-  const preload=()=>loadImage(3).catch(()=>{});
-  if('requestIdleCallback' in window)requestIdleCallback(preload);else setTimeout(preload,0);
+  // Load document previews near the gallery, not during the initial page load.
+  new IntersectionObserver((entries,observer)=>{
+    if(!entries[0].isIntersecting)return;
+    observer.disconnect();select(0);
+    const preload=()=>loadImage(3).catch(()=>{});
+    if('requestIdleCallback' in window)requestIdleCallback(preload);else setTimeout(preload,0);
+  },{rootMargin:'600px'}).observe(host);
 })();

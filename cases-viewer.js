@@ -29,7 +29,7 @@
   const $=s=>host.querySelector(s),panel=$('.case-exhibit'),tabs=$('.case-gallery-tabs'),stage=$('.case-stage'),scene=$('.case-scene'),svg=$('.case-boxes'),response=$('.case-response'),pause=$('.case-pause');
   let img=$('.case-scene img');
   const steps=[...host.querySelectorAll('.case-progress button')];
-  let current=0,step=0,timer=null,playing=false,seen=false,visible=false,selection=0,ready=false;
+  let current=0,step=0,timer=null,playing=false,visible=false,selection=0,ready=false;
   const images=new Map();
   function loadImage(i){
     if(!images.has(i)){
@@ -121,7 +121,7 @@
     // Commit the new geometry before restoring transitions, avoiding the old transform.
     scene.getBoundingClientRect();
     scene.classList.remove('case-reset');ready=true;panel.removeAttribute('aria-busy');
-    if(visible)play(true);
+    if(visible&&!document.hidden)play(true);
   }
   cases.forEach((d,i)=>{
     const b=document.createElement('button');b.id=`case-tab-${i}`;b.setAttribute('role','tab');b.setAttribute('aria-controls','case-active-panel');
@@ -134,13 +134,18 @@
   $('.case-expand').onclick=e=>{stop();show(2);const expanded=$('.case-output').classList.toggle('expanded');e.currentTarget.textContent=expanded?'Collapse response':'Expand full response';e.currentTarget.setAttribute('aria-expanded',String(expanded));};
   $('.case-copy').onclick=async e=>{try{await navigator.clipboard.writeText(cases[current].response);e.target.textContent='Copied';}catch{e.target.textContent='Select text to copy';}};
   new ResizeObserver(position).observe(stage);
-  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&!seen){seen=true;play(true);}else if(!visible)stop();},{threshold:.2}).observe(stage);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+  new IntersectionObserver(entries=>{
+    const inView=entries[0].isIntersecting&&entries[0].intersectionRatio>=.2;
+    if(inView===visible)return;
+    visible=inView;
+    if(visible&&!document.hidden)play(true);else stop();
+  },{threshold:.2}).observe(stage);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else if(visible)play();});
   // Load document previews near the gallery, not during the initial page load.
   new IntersectionObserver((entries,observer)=>{
     if(!entries[0].isIntersecting)return;
     observer.disconnect();select(0);
     const preload=()=>loadImage(3).catch(()=>{});
     if('requestIdleCallback' in window)requestIdleCallback(preload);else setTimeout(preload,0);
-  },{rootMargin:'600px'}).observe(host);
+  },{rootMargin:'1200px'}).observe(host);
 })();

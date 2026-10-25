@@ -798,7 +798,7 @@ function setBud(i){ budIdx=i; budListeners.forEach(f=>f(i)); }
 (function(){
   const host=$('#cmp'), seg=$('#cmp-seg'); const Ls=[2,4,8,16]; let L=2;
   host.innerHTML=`
-   <div class="row"><div class="name" style="color:var(--rvq)">RVQ<small>residual chain</small></div><div class="lanes" id="ln-rvq"></div></div>
+   <div class="row"><div class="name" style="color:var(--rvq)">RVQ<small>residual chain</small></div><div class="lanes" id="ln-rvq"></div><div class="note" id="nt-rvq">each codebook sees the remaining residual</div></div>
    <div class="row"><div class="name" style="color:var(--pq)">PQ<small>channel split</small></div><div class="lanes pq" id="ln-pq"></div><div class="note" id="nt-pq"></div></div>
    <div class="row"><div class="name" style="color:var(--fvq)">FVQ<small>dense views</small></div><div class="lanes fvq" id="ln-fvq"></div><div class="note" id="nt-fvq"></div></div>`;
   const mk=(id,n)=>{ const h=$(id); while(h.children.length<16) h.appendChild(document.createElement('span')); return [...h.children]; };
